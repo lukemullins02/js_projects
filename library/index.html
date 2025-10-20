@@ -7,8 +7,25 @@
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
+    <dialog id="dialog">
+      <form class="book_info">
+        <div>
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+        <div>
+          <label for="pages">Pages:</label>
+          <input type="number" id="pages" name="pages" required />
+        </div>
+        <div>
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required />
+        </div>
+        <input type="submit" id="btn" />
+      </form>
+    </dialog>
+    <button id="show-dialog">New Book</button>
     <div class="container"></div>
-    <button>New Book</button>
   </body>
 </html>
 <script src="lib.js"></script>

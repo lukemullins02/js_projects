@@ -1,4 +1,12 @@
 const container = document.querySelector(".container");
+const dialog = document.querySelector("#dialog");
+const showButton = document.querySelector("#show-dialog");
+const closeButton = document.querySelector("#btn");
+const bookInfo = document.querySelector(".book_info");
+
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
 
 const myLibrary = [];
 
@@ -24,6 +32,13 @@ addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky");
 console.log(myLibrary);
 
 function displayLibrary(arr) {
+  if (container.firstChild) {
+    let child = container.lastElementChild;
+    while (child) {
+      container.removeChild(child);
+      child = container.lastElementChild;
+    }
+  }
   arr.forEach(function (book) {
     let newBook = document.createElement("div");
     let title = document.createElement("h1");
@@ -41,3 +56,16 @@ function displayLibrary(arr) {
 }
 
 displayLibrary(myLibrary);
+
+bookInfo.addEventListener("submit", (e) => {
+  e.preventDefault();
+  dialog.close();
+  const newBook = new FormData(bookInfo);
+  addBookToLibrary(
+    newBook.get("title"),
+    newBook.get("pages"),
+    newBook.get("author")
+  );
+  bookInfo.reset();
+  displayLibrary(myLibrary);
+});
