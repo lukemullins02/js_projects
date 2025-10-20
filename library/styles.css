@@ -77,6 +77,11 @@ h6 {
 }
 
 /* Project CSS */
-h1 {
-  background-color: blue;
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 0 20px 0 20px;
 }
