@@ -32,6 +32,7 @@ addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky");
 console.log(myLibrary);
 
 function displayLibrary(arr) {
+  console.log("hello");
   if (container.firstChild) {
     let child = container.lastElementChild;
     while (child) {
@@ -44,18 +45,45 @@ function displayLibrary(arr) {
     let title = document.createElement("h1");
     let pages = document.createElement("p");
     let author = document.createElement("p");
+    let remove = document.createElement("button");
+    remove.classList.add("remove");
     title.textContent = book.title;
     pages.textContent = book.pages;
     author.textContent = book.author;
+    remove.textContent = "Remove";
     newBook.appendChild(title);
     newBook.appendChild(pages);
     newBook.appendChild(author);
+    newBook.appendChild(remove);
     newBook.classList.add("card");
+    remove.dataset.id = book.id;
     container.appendChild(newBook);
+  });
+
+  let remove = document.querySelectorAll(".remove");
+
+  remove.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      console.log(btn);
+      let book = myLibrary.find((book) => book.id === btn.dataset.id);
+      let index = myLibrary.indexOf(book);
+      myLibrary.splice(index, 1);
+      displayLibrary(myLibrary);
+    });
   });
 }
 
 displayLibrary(myLibrary);
+// remove.forEach((btn) => {
+//   btn.addEventListener("click", () => {
+//     myLibrary.forEach(function (book, index) {
+//       if (btn.dataset.id === book.id) {
+//         myLibrary.splice(index, 1);
+//         displayLibrary(myLibrary);
+//       }
+//     });
+//   });
+// });
 
 bookInfo.addEventListener("submit", (e) => {
   e.preventDefault();
