@@ -10,26 +10,34 @@ showButton.addEventListener("click", () => {
 
 const myLibrary = [];
 
-function Book(title, pages, author, id) {
+function Book(title, pages, author, read, id) {
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
   this.title = title;
   this.pages = pages;
   this.author = author;
+  this.read = read;
   this.id = id;
 }
 
-function addBookToLibrary(title, pages, author) {
-  const book = new Book(title, pages, author);
+Book.prototype.getStatus = function () {
+  if (this.read === "Not Read") {
+    this.read = "Read";
+  } else {
+    this.read = "Not Read";
+  }
+};
+
+function addBookToLibrary(title, pages, author, read) {
+  const book = new Book(title, pages, author, read);
   book.id = crypto.randomUUID();
   myLibrary.push(book);
 }
 
-addBookToLibrary("Dune", "630", "Frank Herbert");
-addBookToLibrary("LOTR", "1020", "JRR Tolkien");
-addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky");
-console.log(myLibrary);
+addBookToLibrary("Dune", "630", "Frank Herbert", "Not Read");
+addBookToLibrary("LOTR", "1020", "JRR Tolkien", "Not Read");
+addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky", "Not Read");
 
 function displayLibrary(arr) {
   console.log("hello");
@@ -46,17 +54,22 @@ function displayLibrary(arr) {
     let pages = document.createElement("p");
     let author = document.createElement("p");
     let remove = document.createElement("button");
+    let status = document.createElement("button");
     remove.classList.add("remove");
+    status.classList.add("status");
     title.textContent = book.title;
     pages.textContent = book.pages;
     author.textContent = book.author;
     remove.textContent = "Remove";
+    status.textContent = book.read;
     newBook.appendChild(title);
     newBook.appendChild(pages);
     newBook.appendChild(author);
     newBook.appendChild(remove);
+    newBook.appendChild(status);
     newBook.classList.add("card");
     remove.dataset.id = book.id;
+    status.dataset.id = book.id;
     container.appendChild(newBook);
   });
 
@@ -64,26 +77,25 @@ function displayLibrary(arr) {
 
   remove.forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log(btn);
       let book = myLibrary.find((book) => book.id === btn.dataset.id);
       let index = myLibrary.indexOf(book);
       myLibrary.splice(index, 1);
       displayLibrary(myLibrary);
     });
   });
+
+  let status = document.querySelectorAll(".status");
+
+  status.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let book = myLibrary.find((book) => book.id === btn.dataset.id);
+      book.getStatus();
+      btn.textContent = book.read;
+    });
+  });
 }
 
 displayLibrary(myLibrary);
-// remove.forEach((btn) => {
-//   btn.addEventListener("click", () => {
-//     myLibrary.forEach(function (book, index) {
-//       if (btn.dataset.id === book.id) {
-//         myLibrary.splice(index, 1);
-//         displayLibrary(myLibrary);
-//       }
-//     });
-//   });
-// });
 
 bookInfo.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -92,7 +104,8 @@ bookInfo.addEventListener("submit", (e) => {
   addBookToLibrary(
     newBook.get("title"),
     newBook.get("pages"),
-    newBook.get("author")
+    newBook.get("author"),
+    newBook.get("read")
   );
   bookInfo.reset();
   displayLibrary(myLibrary);

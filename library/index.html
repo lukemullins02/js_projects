@@ -21,6 +21,25 @@
           <label for="author">Author:</label>
           <input type="text" id="author" name="author" required />
         </div>
+        <div>
+          <fieldset>
+            <legend>Have you read it?</legend>
+            <div>
+              <input type="radio" id="read" name="read" value="Read" required />
+              <label for="author">Read</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="read"
+                name="read"
+                value="Not Read"
+                required
+              />
+              <label for="author">Not Read</label>
+            </div>
+          </fieldset>
+        </div>
         <input type="submit" value="Submit" id="btn" />
       </form>
     </dialog>
