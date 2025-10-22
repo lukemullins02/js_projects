@@ -118,6 +118,14 @@ body {
   margin-bottom: 20px;
 }
 
+dialog > img {
+  height: 20px;
+  width: 40px;
+  filter: brightness(0) invert(1);
+  justify-self: end;
+  cursor: pointer;
+}
+
 dialog > form {
   display: flex;
   flex-direction: column;
@@ -155,6 +163,11 @@ input[type="submit"] {
   border-radius: 5px;
   color: white;
   margin: 0 29px 0 29px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  cursor: pointer;
 }
 
 input[type="submit"]:hover {
@@ -182,6 +195,7 @@ input[type="submit"]:hover {
   font-size: 1.5rem;
   align-self: center;
   margin-top: 3px;
+  cursor: pointer;
 }
 
 #show-dialog:hover {
@@ -199,7 +213,7 @@ input[type="submit"]:hover {
   padding-top: 3px;
 }
 
-img {
+.header > div > img {
   height: 70px;
   width: 70px;
   filter: brightness(0) invert(1);
@@ -263,6 +277,7 @@ img {
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .card-btns > *:hover {

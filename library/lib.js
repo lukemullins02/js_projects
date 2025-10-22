@@ -3,6 +3,11 @@ const dialog = document.querySelector("#dialog");
 const showButton = document.querySelector("#show-dialog");
 const closeButton = document.querySelector("#btn");
 const bookInfo = document.querySelector(".book_info");
+const exitButton = document.querySelector("#exit-button");
+
+exitButton.addEventListener("click", () => {
+  dialog.close();
+});
 
 showButton.addEventListener("click", () => {
   dialog.showModal();

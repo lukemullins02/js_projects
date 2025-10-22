@@ -14,6 +14,7 @@
   </head>
   <body class="roboto-text">
     <dialog id="dialog">
+      <img id="exit-button" src="images/close-thick.svg" />
       <form class="book_info">
         <div>
           <label for="title">Title</label>
@@ -27,22 +28,28 @@
           <label for="author">Author</label>
           <input type="text" id="author" name="author" required />
         </div>
-        <div class="status-check">
+        <div>
           <fieldset>
             <legend>Have you read it?</legend>
             <div>
-              <input type="radio" id="read" name="read" value="Read" required />
-              <label for="author">Read</label>
+              <input
+                type="radio"
+                id="read"
+                name="read"
+                value="Finished"
+                required
+              />
+              <label for="read">Read</label>
             </div>
             <div>
               <input
                 type="radio"
                 id="read"
                 name="read"
-                value="Not Read"
+                value="Currently Reading"
                 required
               />
-              <label for="author">Not Read</label>
+              <label for="Currently Reading">Currently Reading</label>
             </div>
           </fieldset>
         </div>
