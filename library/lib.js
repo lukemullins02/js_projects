@@ -36,7 +36,12 @@ function addBookToLibrary(title, pages, author, read) {
 }
 
 addBookToLibrary("Dune", "630", "Frank Herbert", "Not Read");
-addBookToLibrary("LOTR", "1020", "JRR Tolkien", "Not Read");
+addBookToLibrary(
+  "Lord of the Rings: The Fellowship of the Ring",
+  "1020",
+  "JRR Tolkien",
+  "Not Read"
+);
 addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky", "Not Read");
 
 function displayLibrary(arr) {
@@ -50,21 +55,27 @@ function displayLibrary(arr) {
   }
   arr.forEach(function (book) {
     let newBook = document.createElement("div");
-    let title = document.createElement("h1");
+    let title = document.createElement("p");
     let pages = document.createElement("p");
     let author = document.createElement("p");
     let remove = document.createElement("button");
     let status = document.createElement("button");
+    let content = document.createElement("div");
     remove.classList.add("remove");
     status.classList.add("status");
+    content.classList.add("card-content");
+    title.classList.add("book-title");
+    pages.classList.add("pages");
+    author.classList.add("author");
     title.textContent = book.title;
-    pages.textContent = book.pages;
-    author.textContent = book.author;
+    pages.textContent = `${book.pages}`;
+    author.textContent = `- ${book.author}`;
     remove.textContent = "Remove";
     status.textContent = book.read;
-    newBook.appendChild(title);
-    newBook.appendChild(pages);
-    newBook.appendChild(author);
+    content.appendChild(title);
+    content.appendChild(author);
+    content.appendChild(pages);
+    newBook.appendChild(content);
     newBook.appendChild(remove);
     newBook.appendChild(status);
     newBook.classList.add("card");
