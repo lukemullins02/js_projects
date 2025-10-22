@@ -22,10 +22,10 @@ function Book(title, pages, author, read, id) {
 }
 
 Book.prototype.getStatus = function () {
-  if (this.read === "Not Read") {
-    this.read = "Read";
+  if (this.read === "Currently Reading") {
+    this.read = "Finished";
   } else {
-    this.read = "Not Read";
+    this.read = "Currently Reading";
   }
 };
 
@@ -35,14 +35,14 @@ function addBookToLibrary(title, pages, author, read) {
   myLibrary.push(book);
 }
 
-addBookToLibrary("Dune", "630", "Frank Herbert", "Not Read");
+addBookToLibrary("Dune", "630", "Frank Herbert", "Finished");
 addBookToLibrary(
   "Lord of the Rings: The Fellowship of the Ring",
   "1020",
   "JRR Tolkien",
-  "Not Read"
+  "Currently Reading"
 );
-addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky", "Not Read");
+addBookToLibrary("Crime and Punishment", "407", "Fydor Dostovesky", "Finished");
 
 function displayLibrary(arr) {
   console.log("hello");
@@ -58,26 +58,33 @@ function displayLibrary(arr) {
     let title = document.createElement("p");
     let pages = document.createElement("p");
     let author = document.createElement("p");
+    let progress = document.createElement("p");
     let remove = document.createElement("button");
     let status = document.createElement("button");
     let content = document.createElement("div");
+    let buttons = document.createElement("div");
     remove.classList.add("remove");
     status.classList.add("status");
     content.classList.add("card-content");
     title.classList.add("book-title");
     pages.classList.add("pages");
     author.classList.add("author");
+    progress.classList.add("progress");
+    buttons.classList.add("card-btns");
     title.textContent = book.title;
     pages.textContent = `${book.pages}`;
     author.textContent = `- ${book.author}`;
     remove.textContent = "Remove";
-    status.textContent = book.read;
+    status.textContent = "Change Status";
+    progress.textContent = `Status: ${book.read}`;
     content.appendChild(title);
     content.appendChild(author);
     content.appendChild(pages);
+    content.appendChild(progress);
+    buttons.appendChild(remove);
+    buttons.appendChild(status);
     newBook.appendChild(content);
-    newBook.appendChild(remove);
-    newBook.appendChild(status);
+    newBook.appendChild(buttons);
     newBook.classList.add("card");
     remove.dataset.id = book.id;
     status.dataset.id = book.id;
@@ -101,7 +108,7 @@ function displayLibrary(arr) {
     btn.addEventListener("click", () => {
       let book = myLibrary.find((book) => book.id === btn.dataset.id);
       book.getStatus();
-      btn.textContent = book.read;
+      displayLibrary(myLibrary);
     });
   });
 }

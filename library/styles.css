@@ -161,18 +161,18 @@ img {
 }
 
 .book-title {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 325;
 }
 
 .pages {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgb(93, 91, 91);
   font-weight: 400;
 }
 
 .author {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgb(93, 91, 91);
   font-weight: 400;
 }
@@ -181,4 +181,28 @@ img {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.card-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-btns > * {
+  border: none;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.card-btns > *:hover {
+  background-color: black;
+  color: white;
+}
+
+.progress {
+  padding-top: 2px;
+  font-size: 1.3rem;
+  color: rgb(0, 0, 0);
+  font-weight: 450;
 }
