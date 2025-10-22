@@ -78,6 +78,20 @@ h6 {
 
 /* Project CSS */
 
+.roboto-text {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -88,4 +102,41 @@ h6 {
 
 ::backdrop {
   opacity: 0.5;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(13, 118, 209);
+  padding: 10px 10px 20px 10px;
+  justify-content: space-between;
+  color: white;
+}
+
+#show-dialog {
+  background-color: rgb(13, 118, 209);
+  border: none;
+  border: 1px solid white;
+  color: white;
+  border-radius: 5px;
+}
+
+#show-dialog:hover {
+  color: rgb(13, 118, 209);
+  background-color: white;
+}
+
+.header > div {
+  display: flex;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  filter: brightness(0) invert(1);
+}
+
+.container {
+  background-color: rgb(180, 180, 180);
+  align-items: start;
 }
